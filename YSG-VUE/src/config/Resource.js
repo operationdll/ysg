@@ -7,7 +7,7 @@ import store from '../store/index'
 import router from '../router'
 // 配置图片的基本路径
 localStorage.identity  = 'test'
-axios.defaults.baseURL = 'https://devservice.easyiservice.com'
+axios.defaults.baseURL = 'https://service.easyiservice.com'
 // axios.defaults.headers.common['authToken'] = localStorage.TOKEN
 //api时间
 var time = "";
@@ -206,7 +206,7 @@ var getObj = function(params){
 	var str = "";
 	if(time===""){
 		$.ajax({
-			url:'https://devservice.easyiservice.com/system/getTime',
+			url:'https://service.easyiservice.com/system/getTime',
 			type:'GET', //GET
 			async:false,    //或false,是否异步
 			timeout:5000,    //超时时间
