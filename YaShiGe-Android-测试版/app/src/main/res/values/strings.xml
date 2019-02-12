@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ASCOTT iService</string>
+    <string name="is_loading">  加载中...</string>
+</resources>

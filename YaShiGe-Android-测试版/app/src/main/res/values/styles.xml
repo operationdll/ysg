@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!-- ActionBar的颜色 -->
+        <item name="colorPrimary">@color/window_bg</item>
+        <!-- 状态栏颜色 -->
+        <item name="colorPrimaryDark">#000000</item>
+        <!-- 样式颜色 -->
+        <item name="colorAccent">@color/theme_color</item>
+        <item name="android:windowBackground">@color/window_bg</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="MapTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!-- ActionBar的颜色 -->
+        <item name="colorPrimary">@color/window_bg</item>
+        <!-- 状态栏颜色 -->
+        <item name="colorPrimaryDark">#000000</item>
+        <!-- 样式颜色 -->
+        <item name="android:windowBackground">@color/window_bg</item>
+    </style>
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="center_dialog_style" parent="MyDialogStyle">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="top_dialog_style" parent="MyDialogStyle">
+        <!--<item name="android:gravity">center</item>-->
+        <item name="android:layout_gravity">top</item>
+    </style>
+</resources>

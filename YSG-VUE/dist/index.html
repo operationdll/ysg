@@ -1,0 +1,315 @@
+<!DOCTYPE html><html><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><meta content=yes name=apple-mobile-web-app-capable><meta content=black name=apple-mobile-web-app-status-bar-style><meta content="telephone=no" name=format-detection><meta content="email=no" name=format-detection><meta http-equiv=Cache-Control content=no-cache><title>ASCOTT</title><link rel=stylesheet href=static/lib/swiper/swiper.min.css><link rel=stylesheet href=static/style.css><link rel=stylesheet href=static/ydui.css><link rel=stylesheet href=static/lib/pagination/page.css><script type=text/javascript>var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1264443895'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1264443895' type='text/javascript'%3E%3C/script%3E"));</script><script></script><link href=./static/css/app.87207317045d585f78486822df92d0c5.css rel=stylesheet></head><body><div id=app style="height: 100%"></div><div></div><div id=shoppingPwd class=mask-black style="display: none"><div class=m-keyboard><div class=keyboard-head><strong></strong></div><div class=keyboard-error></div><ul class="keyboard-password J_FillPwdBox"><li><i></i></li><li><i></i></li><li><i></i></li><li><i></i></li><li><i></i></li><li><i></i></li></ul><div style="text-align: right; padding: 0.15rem 0.8rem 0px"><a href=# class=J_ShowPwd style="color: rgb(102, 102, 102); font-size: 0.24rem"></a></div><div class=keyboard-content><ul class=keyboard-numbers><li><a href=javascript:; class=J_Nums>1</a> <a href=javascript:; class=J_Nums>2</a> <a href=javascript:; class=J_Nums>3</a></li><li><a href=javascript:; class=J_Nums>4</a> <a href=javascript:; class=J_Nums>5</a> <a href=javascript:; class=J_Nums>6</a></li><li><a href=javascript:; class=J_Nums>7</a> <a href=javascript:; class=J_Nums>8</a> <a href=javascript:; class=J_Nums>9</a></li><li><a href=javascript:; class=J_Cancel></a> <a href=javascript:; class=J_Nums>0</a> <a href=javascript:; class=J_Backspace></a></li></ul></div></div></div><script src=static/lib/ydui.flexible.js></script><script src=static/lib/jquery-3.1.1.min.js></script><script src=static/lib/swiper/swiper.min.js></script><script src=https://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js></script><script src=static/JSBridge.js></script><script src=static/language.js></script><script src=static/ydui.js></script><script src=static/lib/jquery.qrcode.min.js></script><script type=text/javascript src=static/lib/mySwipe/flexible.js></script><script type=text/javascript src=static/lib/mySwipe/iscroll.js></script><script type=text/javascript src=static/lib/mySwipe/navbarscroll.js></script><script type=text/javascript src=static/lib/pagination/pagination.js></script><script>//设置pin码
+        function setPin(pdata){
+            let _this = pdata;
+            let dialog = window.YDUI.dialog;
+            let alobj = new alertLanguage();
+            let obj = alobj.getAlertMsg(localStorage.LANGUAGE);
+            let resetBnt = '重置';
+            let title = '请设置交易密码';
+            let title1 = "请再次输入交易密码";
+            let msg2 = "第一次密码与第二次不一致!";
+            let msg3 = "设置成功!";
+            let msg4 = "token过期，请重新登录!";
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                resetBnt = 'Reset';
+                title = 'Please set transaction password';
+                title1 = "Please enter transaction password again";
+                msg2 = "The first password is inconsistent with the second!";
+                msg3 = "Successfully set up!";
+                msg4 = "Token expired, please log in again!";
+            }
+            //判断是否设置交易密码
+            let pinParams = {
+                token: localStorage.TOKEN
+            };
+            _this.$store.dispatch('isSetPin', pinParams).then(function (res) {
+                //是否设置pin码
+                if(res.code == 1){
+                    let pwd = '';
+                    let pwd1 = '';
+                    let isShow = false;
+                    let titleNode = title;
+                    let showPwdNode = "显示密码";
+                    let hidePwdNode = "隐藏密码";
+                    //判断显示中/英文
+                    if(localStorage.LANGUAGE!='zh'){
+                        showPwdNode = "Show password";
+                        hidePwdNode = "Hide password";
+                    }
+                    $("#shoppingPwd").show();
+                    $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                        $(this).css({
+                            '-webkit-transform': 'translate(0,0)',
+                            '-moz-transform': 'translate(0,0)',
+                            '-ms-transform': 'translate(0,0)',
+                            '-o-transform':'translate(0,0)',
+                            'transform': 'translate(0,0)'
+                        });
+                    });
+                    $("#shoppingPwd .keyboard-head strong").html(titleNode);
+                    $("#shoppingPwd .J_ShowPwd").html(showPwdNode);
+                    $("#shoppingPwd .J_Cancel").html(resetBnt);
+                    $("#shoppingPwd .J_FillPwdBox li").html("");
+                    $("#shoppingPwd .keyboard-error").html("");
+                    //点击密码数字
+                    $("#shoppingPwd .J_Nums").unbind('click').click(function(){
+                        if(pwd.length==6){
+                            return;
+                        }
+                        let num = $(this).html();
+                        pwd = pwd+num;
+                        let numLength = pwd.length;
+                        if(isShow){
+                            $("#shoppingPwd .J_FillPwdBox li:eq("+(numLength-1)+")").html(num);
+                        }else{
+                            $("#shoppingPwd .J_FillPwdBox li:eq("+(numLength-1)+")").html("<i style='display:block;width:6px;height:6px;border-radius:50%;background-color:#000;'></i>");
+                        }
+                        if(numLength==6){
+                            if(pwd1==''){
+                                pwd1 = pwd;
+                                $("#shoppingPwd .keyboard-head strong").html(title1);
+                                pwd = '';
+                                $("#shoppingPwd .J_FillPwdBox li").html("");
+                            }else{
+                                if(pwd1!=pwd){
+                                    $("#shoppingPwd .keyboard-error").html(msg2);
+                                }else{
+                                    dialog.loading.open('Loading');
+                                    //设置密码
+                                    let setParams = {
+                                        token: localStorage.TOKEN,
+                                        pin: pwd1
+                                    };
+                                    _this.$store.dispatch('setPin', setParams).then(function (res) {
+                                        if(res.code == 0){
+                                            localStorage.PWD = '';
+                                            dialog.alert(msg3);
+                                        }else if(res.code == 1){
+                                            dialog.alert(msg4);
+                                            _this.$router.replace("/loginforguest");
+                                        }else{
+                                            dialog.alert(res.msg);
+                                        }
+                                        dialog.loading.close();
+                                        $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                                            $(this).css({
+                                                '-webkit-transform': 'translateY(100%)',
+                                                '-moz-transform': 'translateY(100%)',
+                                                '-ms-transform': 'translateY(100%)',
+                                                '-o-transform':'translateY(100%)',
+                                                'transform': 'translateY(100%)'
+                                            });
+                                            setTimeout(() => {
+                                                $("#shoppingPwd").hide();
+                                            }, 300);
+                                        });
+                                    });
+                                }
+                            }
+                        }
+                    });
+                    //点击重置按钮
+                    $("#shoppingPwd .J_Cancel").unbind('click').click(function(){
+                        pwd1 = '';
+                        $("#shoppingPwd .keyboard-head strong").html(titleNode);
+                        pwd = '';
+                        $("#shoppingPwd .J_FillPwdBox li").html("");
+                        $("#shoppingPwd .keyboard-error").html("");
+                    });
+                    //点击删除按钮
+                    $("#shoppingPwd .J_Backspace").unbind('click').click(function(){
+                        if(pwd.length==0){
+                            return;
+                        }
+                        pwd = pwd.substring(0,pwd.length-1);
+                        $("#shoppingPwd .J_FillPwdBox li:eq("+pwd.length+")").html("");
+                    });
+                    //点击显示密码按钮
+                    $("#shoppingPwd .J_ShowPwd").unbind('click').click(function(){
+                        isShow = !isShow;
+                        if(isShow){
+                            for(let i=0;i<pwd.length;i++){
+                                $("#shoppingPwd .J_FillPwdBox li:eq("+i+")").html(pwd[i]);
+                            }
+                            $(this).html(hidePwdNode);
+                        }else{
+                            for(let i=0;i<pwd.length;i++){
+                                $("#shoppingPwd .J_FillPwdBox li:eq("+i+")").html("<i style='display:block;width:6px;height:6px;border-radius:50%;background-color:#000;'></i>");
+                            }
+                            $(this).html(showPwdNode);
+                        }
+                    });
+                }else if(res.code == 2){
+                    dialog.alert(msg4);
+                    _this.$router.replace("/loginforguest");
+                }else if(res.code != 0){
+                    dialog.alert(res.msg);
+                }
+            });
+        }
+
+        //验证pin码,并跳转页面
+        function checkPin(_this,objParams){
+            let pwd = '';
+            let isShow = false;
+            let titleNode = "请输入个人密码";
+            let showPwdNode = "显示密码";
+            let hidePwdNode = "隐藏密码";
+            let cancelNode = "取消";
+            let msg1 = "token过期，请重新登录";
+            let msg2 = "密码错误";
+            //判断显示中/英文
+            if(localStorage.LANGUAGE!='zh'){
+                titleNode = "Please input your password";
+                showPwdNode = "Show password";
+                hidePwdNode = "Hide password";
+                cancelNode = "Cancel";
+                msg1 = "Token expired, please log in again";
+                msg2 = "Wrong password";
+            }
+            //检查是否存入密码
+            if(localStorage.PWD!=undefined&&localStorage.PWD!=''){
+                //如果已经登录一次直接查询密码是否正确
+                checkPwd(_this,objParams,msg1,msg2);
+                return;
+            }
+            $("#shoppingPwd").show();
+            $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                $(this).css({
+                    '-webkit-transform': 'translate(0,0)',
+                    '-moz-transform': 'translate(0,0)',
+                    '-ms-transform': 'translate(0,0)',
+                    '-o-transform':'translate(0,0)',
+                    'transform': 'translate(0,0)'
+                });
+            });
+            $("#shoppingPwd .keyboard-head strong").html(titleNode);
+            $("#shoppingPwd .J_ShowPwd").html(showPwdNode);
+            $("#shoppingPwd .J_Cancel").html(cancelNode);
+            $("#shoppingPwd .J_FillPwdBox li").html("");
+            $("#shoppingPwd .keyboard-error").html("");
+            //点击密码数字
+            $("#shoppingPwd .J_Nums").unbind('click').click(function(){
+                if(pwd.length==6){
+                    return;
+                }
+                let num = $(this).html();
+                pwd = pwd+num;
+                let numLength = pwd.length;
+                if(isShow){
+                    $("#shoppingPwd .J_FillPwdBox li:eq("+(numLength-1)+")").html(num);
+                }else{
+                    $("#shoppingPwd .J_FillPwdBox li:eq("+(numLength-1)+")").html("<i style='display:block;width:6px;height:6px;border-radius:50%;background-color:#000;'></i>");
+                }
+                if(numLength==6){
+                    let dialog = window.YDUI.dialog;
+                    //查询密码
+                    dialog.loading.open('Loading');
+                    let pinParams = {
+                        token: localStorage.TOKEN,
+                        pin: pwd
+                    };
+                    _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                        dialog.loading.close();
+                        $("#shoppingPwd .J_FillPwdBox li").html("");
+                        if(res.code == 0){
+                            $("#shoppingPwd").hide();
+                            if(objParams != undefined){
+                                _this.$router.push(objParams);
+                                localStorage.PWD = pwd;
+                            }
+                        }else if(res.code == 1){
+                            $("#shoppingPwd .keyboard-error").html(msg1);
+                            _this.$router.replace("/loginforguest");
+                        }else if(res.code == 2){
+                            $("#shoppingPwd .keyboard-error").html(msg2);
+                        }else{
+                            $("#shoppingPwd .keyboard-error").html(res.msg);
+                        }
+                        pwd = '';
+                    });
+                }
+            });
+            //点击取消按钮
+            $("#shoppingPwd .J_Cancel").unbind('click').click(function(){
+                $("#shoppingPwd .m-keyboard").animate({}, "slow", function(){
+                    $(this).css({
+                        '-webkit-transform': 'translateY(100%)',
+                        '-moz-transform': 'translateY(100%)',
+                        '-ms-transform': 'translateY(100%)',
+                        '-o-transform':'translateY(100%)',
+                        'transform': 'translateY(100%)'
+                    });
+                    setTimeout(() => {
+                        $("#shoppingPwd").hide();
+                    }, 300);
+                });
+            });
+            //点击删除按钮
+            $("#shoppingPwd .J_Backspace").unbind('click').click(function(){
+                if(pwd.length==0){
+                    return;
+                }
+                pwd = pwd.substring(0,pwd.length-1);
+                $("#shoppingPwd .J_FillPwdBox li:eq("+pwd.length+")").html("");
+            });
+            //点击显示密码按钮
+            $("#shoppingPwd .J_ShowPwd").unbind('click').click(function(){
+                isShow = !isShow;
+                if(isShow){
+                    for(let i=0;i<pwd.length;i++){
+                        $("#shoppingPwd .J_FillPwdBox li:eq("+i+")").html(pwd[i]);
+                    }
+                    $(this).html(hidePwdNode);
+                }else{
+                    for(let i=0;i<pwd.length;i++){
+                        $("#shoppingPwd .J_FillPwdBox li:eq("+i+")").html("<i style='display:block;width:6px;height:6px;border-radius:50%;background-color:#000;'></i>");
+                    }
+                    $(this).html(showPwdNode);
+                }
+            });
+        }
+
+        //查询密码
+        function checkPwd(_this,objParams,msg1,msg2){
+            let dialog = window.YDUI.dialog;
+            //查询密码
+            dialog.loading.open('Loading');
+            let pinParams = {
+                token: localStorage.TOKEN,
+                pin: localStorage.PWD
+            };
+            _this.$store.dispatch('checkPin', pinParams).then(function (res) {
+                dialog.loading.close();
+                $("#shoppingPwd .J_FillPwdBox li").html("");
+                if(res.code == 0){
+                    $("#shoppingPwd").hide();
+                    if(objParams != undefined){
+                        _this.$router.push(objParams);
+                    }
+                }else if(res.code == 1){
+                    _this.$dialog.toast({mes: msg1, timeout: 1000});
+                    _this.$router.replace("/loginforguest");
+                }else if(res.code == 2){
+                    _this.$dialog.toast({mes: msg2, timeout: 1000});
+                }else{
+                    _this.$dialog.toast({mes: res.msg, timeout: 1000});
+                }
+                //密码输入错误
+                if(res.code != 0){
+                    localStorage.PWD='';
+                    checkPin(_this,objParams);
+                }
+            });
+        }
+        
+        //获取字体大小
+        $(function(){
+            let cssFontSize = $("html").css("font-size");
+            $(window).resize(function() {
+                setTimeout(function(){
+                    $("html").css("font-size",cssFontSize);
+                },300);
+            });
+        });</script><script type=text/javascript src=./static/js/manifest.658be21bf31fb2d68475.js></script><script type=text/javascript src=./static/js/vendor.5d0545f1cb9413cc1c39.js></script><script type=text/javascript src=./static/js/app.a026a3232c87c610a109.js></script></body></html>

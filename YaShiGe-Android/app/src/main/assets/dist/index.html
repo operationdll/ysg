@@ -1,0 +1,142 @@
+<!DOCTYPE html><html><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport><meta content=yes name=apple-mobile-web-app-capable><meta content=black name=apple-mobile-web-app-status-bar-style><meta content="telephone=no" name=format-detection><meta content="email=no" name=format-detection><title>ASCOTT</title><link rel=stylesheet href=static/lib/swiper/swiper.min.css><link rel=stylesheet href=https://unpkg.com/alloytouch@0.2.5/alloy_touch.css.js><link rel=stylesheet href=static/lib/video/video-js.min.css><script src=static/lib/ydui.flexible.js></script><link href=./static/css/app.c7a1bb2d658c6214c16502add72c5b02.css rel=stylesheet></head><body><div id=app></div><script src=static/lib/jquery-3.1.1.min.js></script><script src=static/lib/swiper/swiper.min.js></script><script src=http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.min.js></script><script src=https://unpkg.com/alloytouch@0.2.5/alloy_touch.js></script><script src=static/lib/bscroll.js></script><script>var openMap,getLocation,saveUser,getUser,getFirstLaunch,setMessageTag,openPdf;
+          console.log(/(Android)/i.test(navigator.userAgent));
+          //判断手机终端
+	      if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+	      	localStorage.platform = '1'
+              //判断iOS系统版本
+		      var agent = navigator.userAgent.toLowerCase() ;
+		      var version;
+		      if(agent.indexOf("like mac os x") > 0){
+			      //ios
+			      var regStr_saf = /os [\d._]*/gi ;
+			      var verinfo = agent.match(regStr_saf) ;
+			      version = (verinfo+"").replace(/[^0-9|_.]/ig,"").replace(/_/ig,".");
+		      }
+
+		      var version_str = version+"";
+		      if(version_str != "undefined" && version_str.length >0){
+		      	var versions = Number(version.split('.')[0])
+			      //判断版本
+			      if(versions >= 9){
+				      //打开本地地图
+				      openMap =function(lng,lat) {
+					      window.webkit.messageHandlers.openMap.postMessage({lng:lng,lat:lat});
+				      }
+
+				      //获取当前位置方法
+				      getLocation = function() {
+					      window.webkit.messageHandlers.getLocation.postMessage(' ');
+				      }
+				      function setLocationLat(lat,lng){
+                          //设置当前经纬度
+                          localStorage.lat = lat;
+					      localStorage.lng = lng;
+				      }
+
+				      //存储方法
+				      saveUser=function() {
+					      var json={name_y:'lixin',room_infot:'1207',te_st:'yyyyyy'}
+
+					      window.webkit.messageHandlers.saveJSInfo.postMessage(json2)
+				      }
+				      //获取用户信息
+				      getUser = function(key) {
+				      	alert(key)
+                          JSInterface.callOCFunction('getInfoForKey',key,function(a) {
+
+                          })
+
+					      localStorage.FULLNAME = name;
+					      localStorage.HOTELID = hotelid;
+					      localStorage.ROOM_INFO = room_info;
+				      }
+				      //首次登录
+				      getFirstLaunch=function() {
+					      JSInterface.callOCFunction('getFirstLaunch','',function(a) {
+                            alert(a)
+					      })
+				      }
+				      //注册推送别名
+				      setMessageTag=function(a,b,c) {
+					      var obj = {
+						      alias_type:a,
+						      alias:b,
+						      tag:c
+					      }
+					      window.webkit.messageHandlers.addUMTagAlias.postMessage(obj)
+				      }
+
+			      }else{
+                        //TODO 小于9的版本
+
+			      }
+		      }
+
+
+
+	      } else if (/(Android)/i.test(navigator.userAgent)) {
+		      localStorage.platform = '2'
+		      //需要分安卓和ios
+		      openMap= function(lng,lat) {
+			      JSInterface.openMap(lng,lat);
+		      }
+		      //获取当前位置方法
+		      getLocation=function() {
+			      JSInterface.getLocation();
+		      }
+		      setLocationLat=function(lng,lat){
+			      localStorage.lat = lat;
+			      localStorage.lng = lng;
+		      }
+		      //首次登录
+		      function getFirstLaunch() {
+			      var localFlag=JSInterface.getFirstLaunch();
+		      }
+
+		      //存储用户信息
+		      //安卓 json 字符串传递
+		      function saveUser() {
+			      var json="{'name':'lixin','room_infot':'1207'}"
+			      JSInterface.saveJSInfo(json)
+		      }
+		      //获取用户信息
+		      function getUser() {
+			      var result = JSInterface.getJSInfo();
+			      alert(result);
+
+			      localStorage.FULLNAME = name;
+			      localStorage.HOTELID = hotelid;
+			      localStorage.ROOM_INFO = room_info;
+		      }
+		      //清除用户信息，登出时使用
+		      function clearUser() {
+
+		      }
+
+
+		      function setPhotoPath(data) {
+			      var imgUrl='http://www.daxincheng.net/file/'+data;
+			      $('#headerShow').attr('src',imgUrl);
+		      }
+		      //消息标签
+		      function setMessageTag(a, b, c) {
+			      JSInterface.setMessageTag(a, b, c)
+		      }
+
+	      };
+
+          // 打开pdf的方法
+          function openPdf(url) {
+	          JSInterface.openPDF(url)
+          }
+
+          //打开视频的方法
+          function openVideo(url) {
+	          JSInterface.openVideo(url)
+          }
+
+          //iOS 打开pdf
+          function openFile(url) {
+	          window.webkit.messageHandlers.openFile.postMessage(url)
+          }
+          getLocation();</script><script type=text/javascript src=./static/js/manifest.69be9d3544fbaa9e100b.js></script><script type=text/javascript src=./static/js/vendor.b7be02041a63261a3ae4.js></script><script type=text/javascript src=./static/js/app.36ea20836d382cbc5e76.js></script></body></html>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/assets"/><source path="/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/Jeff_Deng/work/itearoa/ysg/YaShiGe-Android-测试版/PushSDK/build-types/debug/assets"/></dataSet></merger>

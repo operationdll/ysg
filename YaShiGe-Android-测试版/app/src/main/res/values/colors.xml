@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="theme_color">#FF4081</color>
+    <color name="window_bg">#F2F2F2</color>
+    <color name="shadow_bg">#66000000</color>
+    <color name="line">#DDDDDD</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="action_bar_bg">#333333</color>
+
+    <!-- 字体颜色-->
+    <color name="text_black">#333333</color>
+    <color name="text_gray_dark">#666666</color>
+    <color name="text_gray">#999999</color>
+    <color name="text_gray_light">#BBBBBB</color>
+
+    <color name="light_gray">#ddd</color>
+
+    <color name="bg_content">#F3F3F3</color>
+    <color name="selected_bg">#f2f2f2</color>
+    <color name="select">@android:color/holo_orange_dark</color>
+
+    <color name="line_color">#dddddd</color>
+    <color name="detail_white">#F3F3F3</color>
+    <color name="black_50">#30000000</color>
+    <color name="gray_6">#666666</color>
+    <color name="gray_9">#999999</color>
+    <color name="gray_3">#333333</color>
+    <color name="gray_e9">#e9e9e9</color>
+    <color name="constant_org">#f68735</color>
+
+
+
+    <!--灰色部分-->
+    <color name="gray_22">#222</color>
+    <color name="gray_dc">#dcdcdc</color>
+    <color name="gray_f2">#F2F1EF</color>
+    <color name="gray_5d">#5d5d5d</color>
+    <color name="gray_66">#666666</color>
+</resources>

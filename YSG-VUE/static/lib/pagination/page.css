@@ -1,0 +1,17 @@
+.pagination{
+    background: url('pageArrow.png') right center no-repeat; 
+   /* the width and the height of your image */
+    width: 60px;
+    height: 30px;
+    overflow: hidden;
+    border: solid 1px #ccc;
+}
+
+.pagination select{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    background:transparent;
+    border:none;
+    width: 40px;
+    height:100%;
+}
