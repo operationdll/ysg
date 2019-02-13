@@ -16,13 +16,13 @@
                             <img  @click="goDetail('https://waimai.baidu.com/',2)"  style="border: 1px solid #eee;border-radius: 10px;" src="../../assets/images/baidu.jpg" alt="">
                         </div>
                     </li>
-                    <h4><img src="../../assets/images/icon-lifestyle-2.png" alt=""> {{language.lifeStyle.movie}}</h4>
-                    <li>
+                    <!--<h4><img src="../../assets/images/icon-lifestyle-2.png" alt=""> {{language.lifeStyle.movie}}</h4>
+                     <li>
                         <div>
                             <img @click="goDetail('https://m.iqiyi.com/',3)" src="../../assets/images/icon-life-3.png" alt="">
                             <img @click="goDetail('https://m.v.qq.com/',4)" src="../../assets/images/icon-life-4.png" alt="">
                         </div>
-                    </li>
+                    </li> -->
                     <h4><img src="../../assets/images/icon-lifestyle-4.png" alt="">  {{language.lifeStyle.phone}}</h4>
                     <li>
                         <div>
