@@ -1,6 +1,6 @@
 
 /*搜索 start*/
-.close{display: block;width: .36rem;height: .36rem;background: url("./images/icon_close_o.png")center no-repeat;background-size: .36rem;}
+.close{display: block;width: .6rem;height: .6rem;background: url("./images/icon_close_o.png")center no-repeat;background-size: .6rem;}
 .navbar-center .center-title{font-size: .36rem!important;}
 .search{position:absolute;top:0;left:0;width:100%;background: #fff;height: 100%;}
 .search .search_input{padding: .6rem .3rem;overflow: hidden;background: #f8f8f8;}

@@ -642,8 +642,6 @@ ul, ul li{
                         _this.$dialog.toast({mes: res.msg, timeout: 3000});
                     }
                 });
-                //设置点击按钮大小
-                $(".close").attr("style","background-size:.45rem;width:.45rem;height:.45rem;");
             });
         },
         methods: {

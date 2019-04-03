@@ -85,8 +85,6 @@
             let _this = this;
             $(function(){
                 $(".navbar-center").css('marginLeft',0);
-                //设置点击按钮大小
-                $(".close").attr("style","background-size:.45rem;width:.45rem;height:.45rem;");
                 $(".navbar-item").click(function(){
                     _this.goBack();
                 });

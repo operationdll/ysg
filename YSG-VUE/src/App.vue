@@ -333,10 +333,10 @@ html {
 }
 .back {
   display: block;
-  width: 0.36rem;
-  height: 0.36rem;
+  width: 0.6rem;
+  height: 0.6rem;
   background: url("assets/images/icon_back.png") center no-repeat;
-  background-size: 0.2rem;
+  background-size: 0.4rem;
 }
 .loading {
   position: fixed;
