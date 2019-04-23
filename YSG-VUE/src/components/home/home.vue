@@ -698,7 +698,7 @@ export default {
     });
 
     //每次首页加载的时候调用音频注册
-    loginim(localStorage.ROOM_INFO);
+    loginim();
   },
   mounted: function() {
     //一级页面falg

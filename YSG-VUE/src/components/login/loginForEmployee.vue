@@ -155,7 +155,7 @@
                             setMessageTag(obj.userType,obj.userId,obj.hotelId);
 
                             //音频注册
-                            loginim(localStorage.ROOM_INFO);
+                            loginim();
                         } else {
                             this.$dialog.toast({mes: _this.language.msg.login_err, timeout: 1000});
                         }

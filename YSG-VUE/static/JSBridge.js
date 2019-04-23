@@ -171,12 +171,16 @@ function videoFunction(){
 }
 
 //音频注册
-function loginim(roomNo){
+function loginim(){
+  let roomNo = localStorage.ROOM_INFO;
+  let groupid = localStorage.groupid;
+  let hotelid = localStorage.HOTELID;
+  let token = localStorage.TOKEN;
   try {
     if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
       window.webkit.messageHandlers.loginim.postMessage({roomNo:roomNo});
     }else{
-      JSInterface.loginim(roomNo);
+      JSInterface.loginim(roomNo,groupid,hotelid,token);
     }
   } catch (error) {
     console.log('音频注册报错:'+error);
