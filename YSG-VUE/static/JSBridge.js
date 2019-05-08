@@ -293,3 +293,8 @@ function appDownload(url,type){
     JSInterface.download(JSON.stringify(params));
   }
 }
+
+//退出音视频功能
+function logoutYS() {
+  JSInterface.logout();
+}

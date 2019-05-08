@@ -141,6 +141,8 @@
                                 localStorage.HOTELID = '';
                                 localStorage.idType = '';
                                 localStorage.searchFlag = '';
+                                //退出音视频功能
+                                logoutYS();
                                 this.$router.push('/unlogin');
 
 							}
