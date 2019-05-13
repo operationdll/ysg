@@ -178,7 +178,7 @@ function loginim(){
   let token = localStorage.TOKEN;
   try {
     if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
-      window.webkit.messageHandlers.loginim.postMessage({roomNo:roomNo});
+      window.webkit.messageHandlers.loginim.postMessage({roomNo:roomNo,groupid:groupid,hotelid:hotelid,token:token});
     }else{
       JSInterface.loginim(roomNo,groupid,hotelid,token);
     }
@@ -296,5 +296,13 @@ function appDownload(url,type){
 
 //退出音视频功能
 function logoutYS() {
-  JSInterface.logout();
+  try {
+    if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
+      window.webkit.messageHandlers.logout.postMessage(" ");
+    }else{
+      JSInterface.logout();
+    }
+  } catch (error) {
+    console.log('退出音频报错:'+error);
+  }
 }
