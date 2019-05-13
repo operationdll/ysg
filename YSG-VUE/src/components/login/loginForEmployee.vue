@@ -130,7 +130,6 @@
                             localStorage.userId = res.data.id;
                             localStorage.id = res.data.id;
                             localStorage.ip = res.data.lastloginip;
-                            localStorage.ROOM_INFO = '1000';
                             //员工可选择物业信息
                             localStorage.staffHotels = JSON.stringify(res.data.hotel_list_detail);
                             //初始化购物车
@@ -155,6 +154,9 @@
                             setMessageTag(obj.userType,obj.userId,obj.hotelId);
 
                             //音频注册
+                            if(localStorage.FULLNAME=='eleory'){
+                                localStorage.ROOM_INFO = '1000';
+                            }
                             loginim();
                         } else {
                             this.$dialog.toast({mes: _this.language.msg.login_err, timeout: 1000});
