@@ -743,7 +743,7 @@ export default {
     },
     //显示个人中心
     showCenter: function() {
-      if (localStorage.TOKEN) {
+      //if (localStorage.TOKEN) {
         $(".index").css({
           position: "absolute",
           height: "100%",
@@ -766,9 +766,9 @@ export default {
           this.centerSlide = true;
           this.markFlag = true;
         }
-      } else {
-        this.$router.push('/loginforguest');
-      }
+      //} else {
+        //this.$router.push('/loginforguest');
+      //}
     },
     //点击页面，收起抽屉效果
     hideSlide: function() {
