@@ -96,7 +96,7 @@ const Home = {
 //登录接口
 const Login = {
 	LoginUrl: '/user/login',
-	staffLoginUrl:'/staff/login',
+	staffLoginUrl:'/staff/appLogin',//staff/login
 	getUsersUrl:'/staff/getStaffInfoByToken'
 }
 
