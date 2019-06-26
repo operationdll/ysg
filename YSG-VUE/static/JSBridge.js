@@ -146,7 +146,7 @@ function checkVersion(params) {
 //清理缓存
 function h5Version(){
   try {
-    let v = '1.0/13/02/2019';
+    let v = '1.0/26/06/2019';
     if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
       window.webkit.messageHandlers.h5Version.postMessage({ version: v, date: new Date() });
     }else{
