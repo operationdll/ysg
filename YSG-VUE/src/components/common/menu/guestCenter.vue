@@ -157,16 +157,17 @@
 				}
 				this.$store.dispatch('getUsers', params).then(function (res) {
                     _this.gsmSrc =  res.data.serviceUrl;
-                    //if(res.code==2){
-                        //let msg4 = "token过期，请重新登录!";
+                    if(res.code==2){
+                        let msg4 = "token过期，请重新登录!";
                         //判断显示中/英文
-                        //if(localStorage.LANGUAGE!='zh'){
-                            //msg4 = "Token expired, please log in again!";
-                        //}
-                        //_this.$dialog.toast({mes: msg4, timeout: 3000});
-                        //_this.$router.replace("/loginforguest");
-                        //return;
-                    //}
+                        if(localStorage.LANGUAGE!='zh'){
+                            msg4 = "Token expired, please log in again!";
+                        }
+                        _this.$dialog.toast({mes: msg4, timeout: 3000});
+                        _this.$router.replace("/loginforguest");
+                        return;
+                    }
+                    console.log(res.data.serviceUrl);
                     if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){
                         openFile(res.data.serviceUrl)
                     } else {
