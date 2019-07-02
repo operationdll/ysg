@@ -203,8 +203,8 @@
 					}
                 }
                 if(key==('a1')){
-                    key = ["165"];
-                    this.propertyinterfId = 12;
+                    key = ["1"];
+                    this.propertyinterfId = 165;
                 }else{
                     this.propertyinterfId = 0;
                 }
