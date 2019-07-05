@@ -111,16 +111,18 @@
                         item.name = this.groupListbyId.list[i].name;
                     }
                     item.value = this.groupListbyId.list[i].hotelId;
-                    this.propertyList.push(item);
-                    if(this.groupListbyId.list[i].hotelId==1){
-                        item = new Object();
-                        if(localStorage.LANGUAGE == 'en' || localStorage.LANGUAGE == null){
-                            item.name = 'Raffles City Residence Beijing';
-                        } else {
-                            item.name = '北京来福士阁服务公寓';
-                        }
-                        item.value = 'a1';
+                    if(item.value!=99){
                         this.propertyList.push(item);
+                        if(this.groupListbyId.list[i].hotelId==1){
+                            item = new Object();
+                            if(localStorage.LANGUAGE == 'en' || localStorage.LANGUAGE == null){
+                                item.name = 'Raffles City Residence Beijing';
+                            } else {
+                                item.name = '北京来福士阁服务公寓';
+                            }
+                            item.value = 'a1';
+                            this.propertyList.push(item);
+                        }
                     }
                 }
                 //设置初始化选择酒店

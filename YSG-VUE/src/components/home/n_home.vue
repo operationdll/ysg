@@ -43,7 +43,7 @@
                 </section>
                 <section class="map_list un_loginmap" style="margin-top: .5rem;">
                     <ul>
-                        <li v-for="item in hotelList">
+                        <li v-for="item in hotelList" v-if="item.hotelId!=99">
                             <router-link :to="{path:'/s_home',query:{hotelid:item.hotelId, pageType:'unlogin', page:'unlogin'}}">
                                 <div class="pic_show" @click="goHome(item)">
                                     <h4 v-if="langFlag == 'en'">{{item.nameEn}}</h4>
