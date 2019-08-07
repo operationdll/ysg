@@ -155,34 +155,49 @@ export default new Router({
     base:'/',
     scrollBehavior,
     routes: [
-	    {path: '/2',name: 'translate',component: translate}, //测试使用
+	      {path: '/2',name: 'translate',component: translate}, //测试使用
         {path: '/',
-            redirect:to => {
-              var browser = {
-                versions: function () {
-                    var u = navigator.userAgent, app = navigator.appVersion;
-                    return {//移动终端浏览器版本信息   
-                        trident: u.indexOf('Trident') > -1, //IE内核  
-                        presto: u.indexOf('Presto') > -1, //opera内核  
-                        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核  
-                        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核  
-                        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端  
-                        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端  
-                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器  
-                        iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器  
-                        iPad: u.indexOf('iPad') > -1, //是否iPad    
-                        webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部  
-                        weixin: u.indexOf('MicroMessenger') > -1, //是否微信   
-                        qq: u.match(/\sQQ/i) == " qq" //是否QQ  
-                    };
-                }(),
-                language: (navigator.browserLanguage || navigator.language).toLowerCase()
-            }
+              redirect:to => {
+                var browser = {
+                  versions: function () {
+                      var u = navigator.userAgent, app = navigator.appVersion;
+                      return {//移动终端浏览器版本信息   
+                          trident: u.indexOf('Trident') > -1, //IE内核  
+                          presto: u.indexOf('Presto') > -1, //opera内核  
+                          webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核  
+                          gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核  
+                          mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端  
+                          ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端  
+                          android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器  
+                          iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器  
+                          iPad: u.indexOf('iPad') > -1, //是否iPad    
+                          webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部  
+                          weixin: u.indexOf('MicroMessenger') > -1, //是否微信   
+                          qq: u.match(/\sQQ/i) == " qq" //是否QQ  
+                      };
+                  }(),
+                  language: (navigator.browserLanguage || navigator.language).toLowerCase()
+              }
 
-            if (!(browser.versions.mobile || browser.versions.ios || browser.versions.android ||
-                browser.versions.iPhone || browser.versions.iPad)) {
-                return { path: '/pc' };
-            }
+              if (!(browser.versions.mobile || browser.versions.ios || browser.versions.android ||
+                  browser.versions.iPhone || browser.versions.iPad)) {
+                  return { path: '/pc' };
+              }
+              //获取页面url,看是否是消息跳转页面
+              //var youmenUrl = window.location.href;
+              //if(youmenUrl.indexOf('?')!=-1){
+                //let youmenP = youmenUrl.substring(youmenUrl.indexOf('?')+1);
+                //alert(youmenP);
+                //let strdata = youmenP.split(";");
+                //let purl = strdata[0];
+                //let data = {"title":"aaa","pdf":"","video":"","article":"https://storage.easyiservice.com/iservicev2/html/201810/e5b1fa84af5b6d460b073f8b7f8f3373.html"};
+                // if(!data.outLink){
+                //return {path:'/promotionDetail',query:{info:data}};
+                // }else{
+                //     return {path:'/promotionOpen',query:{url:data.outLink,title:data.title}};
+                // }
+              //}
+
 	            if(localStorage.TOKEN){
 		            //如果已登录跳转至已登录首页
 		            return { path: '/home'}
@@ -194,7 +209,7 @@ export default new Router({
         },//引导页
         {path: '/guide',name: 'guide',component: guide},//首次引导页
         {path: '/error',name: 'error',component: error},//首次引导页
-        { path: '/pc', name: 'pc', component: pc },//首次引导页 
+        {path: '/pc', name: 'pc', component: pc },//首次引导页 
         {path: '/home',name: 'home',component: home,meta:{allowBack: false}},//首页
         {path: '/gsm',name: 'gsm',component: gsm},//gsm
         {path: '/home/trafficDetail',name: 'trafficDetail',component: trafficDetail},//交通信息
@@ -228,9 +243,9 @@ export default new Router({
         {path: '/airportInfo',name: 'airportInfo',component: airportInfo},//航班信息查询列表
         {path: '/translate',name: 'translate',component: translate},//翻译
         {path: '/communityLife',name: 'communityLife',component: communityLife,meta:{allowBack: false}},//社区生活
-	    {path: '/propertyDetail',name: 'propertyDetail',component: propertyDetail},//社区生活
-	    {path: '/lifeStyle',name: 'lifeStyle',component: lifeStyle},//生活服务
-	    {path: '/lifeStyleDetail',name: 'lifeStyleDetail',component: lifeStyleDetail},//生活服务详情
+        {path: '/propertyDetail',name: 'propertyDetail',component: propertyDetail},//社区生活
+        {path: '/lifeStyle',name: 'lifeStyle',component: lifeStyle},//生活服务
+        {path: '/lifeStyleDetail',name: 'lifeStyleDetail',component: lifeStyleDetail},//生活服务详情
         {path: '/propertyActivity',name: 'propertyActivity',component: propertyActivity},//物业活动
         {path: '/opinionSurvey',name: 'opinionSurvey',component: opinionSurvey},//物业通知
         {path: '/opinionDetail',name: 'opinionDetail',component: opinionDetail},//物业通知详情
