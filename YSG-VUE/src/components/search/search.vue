@@ -84,10 +84,12 @@
                 this.hotelList.push({name:allName,value:'0'});
 
                 for (var key in res.data.list){
-                    if(localStorage.LANGUAGE == 'en') {
-                        this.hotelList.push({name:res.data.list[key].nameEn,value:res.data.list[key].hotelId});
-                    } else {
-                        this.hotelList.push({name:res.data.list[key].name,value:res.data.list[key].hotelId});
+                    if(res.data.list[key].hotelId!=99){
+                        if(localStorage.LANGUAGE == 'en') {
+                            this.hotelList.push({name:res.data.list[key].nameEn,value:res.data.list[key].hotelId});
+                        } else {
+                            this.hotelList.push({name:res.data.list[key].name,value:res.data.list[key].hotelId});
+                        }
                     }
                 }
 
