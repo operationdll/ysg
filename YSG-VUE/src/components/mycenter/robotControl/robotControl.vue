@@ -1,8 +1,6 @@
 <template>
   <div class="search">
     <div class="search_box">
-        <span class="back" style="position: fixed;z-index:2;width: 0.5rem;height: 0.5rem;background-size: 0.3rem;margin-top:.2rem;"></span>
-        <div class="divTitle" @click="goBack">{{language.myCenter.robotControl}}</div>
         <div class="divmBG"></div>
         <div class="bntDiv">
             <div>
@@ -18,7 +16,7 @@
             <div>
               <span class="lArrow" style="margin-top:.78rem;margin-left:.28rem;"></span>
                 <button class="bnt" @click="detail(3)">召唤</button>
-              <span class="rArrow" style="margin-top:-.52rem;margin-left:6.17rem;"></span>
+              <span class="rArrow" style="margin-top:-.52rem;margin-left:6.17rem;"></span> 
             </div>
             <div>
               <span class="lArrow" style="margin-top:.78rem;margin-left:.28rem;"></span>
@@ -28,6 +26,11 @@
             <div>
               <span class="lArrow" style="margin-top:.78rem;margin-left:.28rem;"></span>
                 <button class="bnt" @click="detail(5)">返回充电桩</button>
+              <span class="rArrow" style="margin-top:-.52rem;margin-left:6.17rem;"></span>
+            </div>
+            <div>
+              <span class="lArrow" style="margin-top:.78rem;margin-left:.28rem;"></span>
+                <button class="bnt" @click="goBack">返回</button>
               <span class="rArrow" style="margin-top:-.52rem;margin-left:6.17rem;"></span>
             </div>
         </div>
@@ -44,7 +47,7 @@
 
 .bntDiv{
     width:100%;
-    margin-top:6.6rem;
+    margin-top:5rem;
     display:block;
     position:absolute;
     z-index:1;
@@ -67,21 +70,9 @@
     margin-right: auto;
 }
 
-.divTitle{
-    font-family:PingFangSC-Regular;
-    font-size:.4rem;
-    color:white;
-    display: block;
-    margin-top:.15rem;
-    position: absolute;
-    z-index:3;
-    width:100%;
-    text-align: center;
-}
-
 .divmBG{
     width:100%;
-    margin-top:1rem;
+    margin-top:-.5rem;
     display:block;
     position:absolute;
     z-index:1;
