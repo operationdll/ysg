@@ -1,8 +1,8 @@
 <template>
   <div class="search">
     <div class="search_box">
-        <span class="back" style="position: fixed;z-index:2;width: 0.5rem;height: 0.5rem;background-size: 0.3rem;margin-top:.2rem;" @click="goBack"></span>
-        <div class="divTitle">{{language.myCenter.robotControl}}</div>
+        <span class="back" style="position: fixed;z-index:2;width: 0.5rem;height: 0.5rem;background-size: 0.3rem;margin-top:.2rem;"></span>
+        <div class="divTitle" @click="goBack">{{language.myCenter.robotControl}}</div>
         <div class="divmBG"></div>
         <div class="bntDiv">
             <div>
@@ -73,8 +73,10 @@
     color:white;
     display: block;
     margin-top:.15rem;
-    margin-left: 2.9rem;
     position: absolute;
+    z-index:3;
+    width:100%;
+    text-align: center;
 }
 
 .divmBG{
