@@ -2,18 +2,25 @@
   <div>
     <div class="search" style="height: 100%" id="section5">
       <div class="nav_mark"></div>
-      <yd-navbar :title="title" fixed>
+      <!-- <yd-navbar :title="title" fixed>
         <span class="back" slot="left" @click="ordGoBack()"></span>
         <span style="display:block;width:50%;height:60%;margin-top:10%;margin-right:40%;" slot="right" @click="isProperty = true">
            <div style="color:#afafaf;" v-if="isZH">选择物业</div>
            <div style="color:#afafaf;" v-if="!isZH">Property</div>
            <popup-picker :data="properties" :show="isProperty" :columns="1" @on-hide="isProperty = false" @on-change="onPropertyChange"></popup-picker>
         </span>
-      </yd-navbar></br></br></br>
+      </yd-navbar></br></br></br> -->
+
+      <span style="display:flex;margin-top:.4rem;float:left;z-index:101;position:fixed;margin-left:5.5rem;font-size:.3rem;width:2rem;height:1rem;justify-content: center;align-items: center;" @click="isProperty = true">
+           <div style="color:#afafaf;" v-if="isZH">选择物业</div>
+           <div style="color:#afafaf;" v-if="!isZH">Property</div>
+      </span>
+      <popup-picker :data="properties" :show="isProperty" :columns="1" @on-hide="isProperty = false" @on-change="onPropertyChange"></popup-picker>
+      <v-back v-bind:title="title" style="position:fixed;z-index:100;margin-top:-.5rem"></v-back>
       <section class="g-flexview" style="background:white;">
         <section class="g-scrollview">
           <div id="orderDiv" class="m-list list-theme4">
-            <ul class="type-buy">
+            <ul class="type-buy" style="margin-top:.5rem">
               <li v-for="(order, index) in ordDataList" style="border-bottom:0px;">
                 <table border="0" width="100%" @click="ordDetail(order)">
                     <tr>
@@ -270,6 +277,8 @@
     import { PopupPicker, XButton } from 'vux'
     import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
+    import back from "../back";
+
     export default {
         data() {
             return {
@@ -467,7 +476,8 @@
             isHomePage(0)
         },
         components: {
-            PopupPicker
+            PopupPicker,
+            "v-back": back
         },
         computed: {
             ...mapState({

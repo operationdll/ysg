@@ -1,14 +1,10 @@
 <template>
     <div class="common_nav_style">
         <div class="nav_mark"></div>
-        <yd-navbar :title="language.news.title" fixed>
-            <router-link to="/home" slot="left">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+        <v-back v-bind:title="language.news.title" home="home" style="position:fixed;"></v-back>
         <div class="news-list">
             <div id="myscroll">
-                <ul style="background:white;">
+                <ul style="background:white;margin-top:1rem;">
                     <li v-for="item in newsList" @click="goDetail(item.url)">
                         <table>
                             <tr>
@@ -38,7 +34,7 @@
 </template>
 <style scoped>
 .common_nav_style .m-navbar{z-index: 200}
-.news-list ul{padding: .25rem;margin-top: 1.2rem;}
+.news-list ul{padding: .25rem;}
 .news-list li{padding: .15rem;border-bottom: 1px solid #ddd;}
 .news-list li h4{font-size: .32rem;color: #333;}
 .news-list li p{font-size: .28rem;color: #666;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;}
@@ -46,7 +42,9 @@
 </style>
 <script>
 	import { mapGetters } from 'vuex'
-	import { mapState } from 'vuex'
+    import { mapState } from 'vuex'
+    import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -160,5 +158,8 @@
             })
 
         },
+        components: {
+            "v-back": back
+        }
 	};
 </script>

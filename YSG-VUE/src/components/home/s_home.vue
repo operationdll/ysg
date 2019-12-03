@@ -4,10 +4,12 @@
 			<!--页面遮罩-->
 			<div class="mark" v-show="markFlag" @click="hideSlide"></div>
 			<!--导航菜单-->
-			<yd-navbar title="" class="index_tab">
-				<span slot="left" class="back" @click="goBack"></span>
-				<span class="menu" @click="showMenu" slot="right"></span>
-			</yd-navbar>
+      <div class="home-bnt-left" @click="goBack">
+          <span class="home-back"></span>
+      </div>
+      <div class="home-bnt-right" @click="showMenu">
+          <span class="back-menu"></span>
+      </div>
 			<!--banner-->
 			<scroller ref="scroller">
 				<section class="index_top" :style="{backgroundImage: 'url(' + homeData.indexBackground + ')'}">
@@ -191,6 +193,51 @@
 
 	</div>
 </template>
+<style scoped>
+.home-bnt-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    margin-top: .2rem;
+    margin-left: -.3rem;
+    float:left;
+    position: fixed;
+    z-index: 100;
+}
+
+.home-bnt-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    margin-top: .2rem;
+    right: -.3rem;
+    float:right;
+    position: fixed;
+    z-index: 100;
+}
+
+.back-menu{
+  display: block;
+  width: 0.4rem;
+  height: 0.5rem;
+  background: url(/static/img/icon_menu.cd13389.png)center no-repeat;
+  background-size: 0.38rem;
+}
+
+.home-back{
+  display: block;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: url(../../assets/images/icon_back.png) center no-repeat;
+  background-size: 0.3rem;
+}
+</style>
 
 <script>
 import { Actionsheet, Scroller } from "vux";

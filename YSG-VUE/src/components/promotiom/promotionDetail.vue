@@ -1,14 +1,7 @@
 <template>
 <div class="property">
 	<div class="nav_mark"></div>
-	<yd-navbar :title="info.title" fixed>
-		<router-link to="/promotion" slot="left">
-			<span class="back" ></span>
-		</router-link>
-		<!--<router-link :to="{path:'/judge',query:{judgeFlag:'promotion',info:info}}" slot="right">-->
-			<!--<span class="judge"></span>-->
-		<!--</router-link>-->
-	</yd-navbar>
+	<v-back v-bind:title="info.title" style="position:fixed;"></v-back>
 	<section class="resolve-box" v-html="content">
 		<!--<iframe id="iframe_detail" :src="info.article"  frameborder="0" ></iframe>-->
 	</section>
@@ -23,7 +16,9 @@
 	.resolve-box img{max-width: 100%;height: auto!important;}
 </style>
 <script>
-    import { mapState } from 'vuex'
+	import { mapState } from 'vuex'
+	import back from "../back";
+
     export default {
         data() {
             return {
@@ -87,7 +82,8 @@
             //一级页面falg
             isHomePage(0)
         },
-        components:{
+        components: {
+            "v-back": back
         }
     };
 </script>

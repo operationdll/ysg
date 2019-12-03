@@ -1,15 +1,8 @@
 <template>
     <div class="phone">
         <div class="nav_mark"></div>
-        <yd-navbar :title="language.func.tel" fixed>
-            <router-link to="/home" slot="left" v-if="stateFlag == '1'">
-                <span class="close"></span>
-            </router-link>
-            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" slot="left" v-if="stateFlag == '2'">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
-        <div class="phone_box" style="margin-top: 1.2rem;">
+        <v-back v-bind:title="language.func.tel" home="home" style="position:fixed;margin-top: -1.2rem;"></v-back>
+        <div class="phone_box"style="margin-top: 1.2rem;">
             <section v-for="item in telList">
                 <h4>{{item.title}}</h4>
                 <div v-for="tel in item.telList" @click="call(tel.tel)">
@@ -21,7 +14,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     .phone .phone_box{padding: 0 .2rem;color: #454545;padding-bottom: .6rem;background: #fff;}
     .phone .phone_box h4{font-size: .3rem;border-bottom: 1px solid #eee;padding: .2rem 0;margin-top: .2rem;}
     .phone .phone_box div{padding:.2rem 0;border-bottom: 1px solid #eee;}
@@ -32,6 +25,8 @@
 
 <script type="text/babel">
     import { mapState } from 'vuex'
+    import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -73,7 +68,9 @@
         mounted:function () {
             //一级页面falg
             isHomePage(0)
+        },
+        components: {
+            "v-back": back
         }
-
 	};
 </script>

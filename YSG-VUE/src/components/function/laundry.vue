@@ -2,9 +2,7 @@
   <div>
     <div class="search" style="height: 100%">
       <div class="nav_mark"></div>
-      <yd-navbar :title="title" fixed>
-        <span class="close" slot="left"></span>
-      </yd-navbar>
+      <v-back v-bind:title="title" home="home" style="position:fixed;"></v-back>
       <section class="g-flexview">
         <section class="promotiom-box">
           <h1>{{language.raiders.title}}</h1>
@@ -65,6 +63,8 @@
 <script>
     import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
+    import back from "../back";
+
     export default {
         data() {
             return {
@@ -124,7 +124,7 @@
             isHomePage(0)
         },
         components: {
-            
+            "v-back": back
         },
         computed: {
             ...mapState({

@@ -1,11 +1,7 @@
 <template>
     <div class="common_nav_style">
         <div class="nav_mark"></div>
-        <yd-navbar :title="language.lifeStyle.title" fixed>
-            <router-link :to="{path:'/home'}" slot="left">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+         <v-back v-bind:title="language.lifeStyle.title" style="position:fixed;z-index:100;"></v-back>
         <scroller style="background: #f2f2f2;">
             <section class="life-style">
                 <ul>
@@ -63,7 +59,9 @@
 </style>
 <script>
 	import { mapGetters } from 'vuex'
-	import { mapState } from 'vuex'
+    import { mapState } from 'vuex'
+    import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -91,5 +89,8 @@
             })
 
         },
+        components:{
+            "v-back": back
+        }
 	};
 </script>

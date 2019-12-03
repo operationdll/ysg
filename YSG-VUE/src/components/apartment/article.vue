@@ -1,11 +1,7 @@
 <template>
     <div class="common_nav_style">
         <div class="nav_mark"></div>
-        <yd-navbar :title="title" fixed>
-            <router-link :to="{path:'/appartmentStyle',query:{index:tabIndex}}" slot="left">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+        <v-back v-bind:title="title" style="position:fixed;"></v-back>
         <section class="resolve-box" v-show="showContent" v-html="content"></section>
         <ul class="pdf-video">
             <li @click="toPDF" v-show="showPdf"></li>
@@ -21,7 +17,9 @@
 
 <script>
 	import { mapGetters } from 'vuex'
-	import { mapState } from 'vuex'
+    import { mapState } from 'vuex'
+    import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -82,6 +80,9 @@
         mounted:function () {
             //一级页面falg
             isHomePage(0)
-        }
+        },
+        components: {
+			"v-back": back
+		}
 	};
 </script>

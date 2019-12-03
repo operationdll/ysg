@@ -1,11 +1,7 @@
 <template>
 <div class="property">
 	<div class="nav_mark"></div>
-	<yd-navbar :title="data.name" fixed>
-		<router-link :to="{path:'/raiders'}" slot="left"> 
-			<span class="back"></span>
-		</router-link>
-	</yd-navbar>
+	<v-back v-bind:title="data.name" style="position:fixed;"></v-back>
 	<section class="resolve-box" v-html="content"></section>
 	<div class="location-icon" @click="openMap"></div>
 	<ul class="pdf-video" :class="{ 'one': isOne, 'two': isTwo}">
@@ -19,7 +15,9 @@
 	.judge{display: block;width: .5rem;height: .5rem;background: url("../../assets/images/icon_tips.png")center no-repeat;background-size: .5rem;}
 </style>
 <script type="text/babel">
-    import { mapState } from 'vuex'
+	import { mapState } from 'vuex'
+	import back from "../back";
+
     export default {
         data() {
             return {
@@ -90,7 +88,8 @@
             //一级页面falg
             isHomePage(0)
         },
-        components:{
+        components: {
+            "v-back": back
         }
     };
 </script>

@@ -1,12 +1,7 @@
 <template>
   <div class="promotiom">
       <div class="nav_mark"></div>
-      <yd-navbar :title="language.community.feedback" fixed>
-          <router-link to="/communityLife" slot="left">
-              <span class="close"></span>
-          </router-link>
-      </yd-navbar>
-
+      <v-back v-bind:title="language.community.feedback" home="home" style="position:fixed;margin-top:-1.3rem;z-index:100"></v-back>
       <section style="margin-top: 1.3rem;">
               <yd-cell-group>
                   <yd-cell-item v-for="data in dataList" arrow type="label" @click.native="toFeedback(data.id)">
@@ -27,6 +22,7 @@
 	import menu from '../common/menu.vue'
     import guestCenter from '../common/menu/guestCenter.vue'
     import { PopupPicker, XButton, Scroller } from 'vux'
+    import back from "../back";
 //    import { Scroller, Divider, Spinner, XButton, Group, Cell, LoadMore, PopupPicker } from 'vux'
 	export default {
 		data() {
@@ -66,6 +62,7 @@
             'v-guestCenter':guestCenter,
             PopupPicker,
             Scroller,
+            "v-back": back
         },
         computed: {
             ...mapState({

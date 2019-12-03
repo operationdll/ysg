@@ -6,13 +6,12 @@
                 <div class="mark" v-show="markFlag"  @click="hideSlide"></div>
             </transition>
             <!--菜单栏-->
-            <yd-navbar title="" class="index_tab" fixed>
-                <router-link :to="{path:'/loginforguest',query:{pageType:'n_home'}}" slot="left">
-                    <span class="user"></span>
-                </router-link>
-                <span class="menu" @click="showMenu"  slot="right"></span>
-            </yd-navbar>
-
+            <div class="home-bnt-left" @click="goLogin">
+                <span class="home-user"></span>
+            </div>
+            <div class="home-bnt-right" @click="showMenu">
+                <span class="back-menu"></span>
+            </div>
             <!--主题内容区域-->
             <scroller>
                 <section class="index_top"  :style="{backgroundImage: 'url(' + homeData.indexBackground + ')'}">
@@ -72,7 +71,7 @@
         <v-guestCenter v-show="centerFlag"></v-guestCenter>
     </div>
 </template>
-<style>
+<style scoped>
 .un_loginmap {
   margin-bottom: 1rem;
 }
@@ -111,6 +110,50 @@
   right: 0.2rem;
   color: #f0c366;
   font-size: 0.28rem;
+}
+
+.home-bnt-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    margin-top: .2rem;
+    margin-left: -.3rem;
+    float:left;
+    position: fixed;
+    z-index: 100;
+}
+
+.home-bnt-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    margin-top: .2rem;
+    right: -.3rem;
+    float:right;
+    position: fixed;
+    z-index: 100;
+}
+
+.home-user{
+  display: block;
+  width: 0.4rem;
+  height: 0.5rem;
+  background: url(/static/img/icon_user.c366762.png)center no-repeat;
+  background-size: 0.38rem;
+}
+
+.back-menu{
+  display: block;
+  width: 0.4rem;
+  height: 0.5rem;
+  background: url(/static/img/icon_menu.cd13389.png)center no-repeat;
+  background-size: 0.38rem;
 }
 </style>
 
@@ -347,6 +390,9 @@ export default {
     },
     openBooking: function() {
       openBooking(localStorage.bookUrl);
+    },
+    goLogin: function() {
+      this.$router.push({path: "/loginforguest",query:{pageType:'n_home'}});
     }
   },
   components: {

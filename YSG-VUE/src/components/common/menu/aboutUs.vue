@@ -1,9 +1,7 @@
 <template>
 	<div class="common_nav_style">
 		<div class="nav_mark"></div>
-		<yd-navbar title="ABOUT US" fixed>
-				<span slot="left" class="back" @click="goBack"></span>
-		</yd-navbar>
+		<v-back title="ABOUT US" style="position:fixed;"></v-back>
 		<section class="resolve-box" v-html="content">
 			<!--<iframe id="iframe_detail" :src="info.article"  frameborder="0" ></iframe>-->
 		</section>
@@ -15,7 +13,9 @@
 </style>
 <script type="text/babel">
     import { mapGetters } from 'vuex'
-    import { mapState } from 'vuex'
+	import { mapState } from 'vuex'
+	import back from "../../back";
+
     export default {
         data() {
             return {
@@ -72,8 +72,8 @@
             //一级页面falg
             isHomePage(0)
         },
-        components:{
-
-        },
+       components: {
+			"v-back": back
+		}
     };
 </script>

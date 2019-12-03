@@ -1,14 +1,7 @@
 <template>
     <div class="property">
         <div class="nav_mark"></div>
-        <yd-navbar :title="info.introduct" fixed>
-            <router-link to="/home" slot="left" v-if="stateFlag == '1'">
-                <span class="back" ></span>
-            </router-link>
-            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" slot="left" v-if="stateFlag == '2'">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+        <v-back v-bind:title="info.introduct"></v-back>
         <section class="resolve-box" v-show="showContent" v-html="content"></section>
         <ul class="pdf-video" :class="{ 'one': isOne, 'two': isTwo}" v-show="btnFlag">
             <li @click="toPDF" v-show="pdfFlag"></li>
@@ -19,6 +12,8 @@
 <style>
 </style>
 <script type="text/babel">
+import back from "../back";
+
 export default {
   data() {
     return {
@@ -101,6 +96,8 @@ export default {
     //一级页面falg
     isHomePage(0);
   },
-  components: {}
+  components: {
+      "v-back": back
+  }
 };
 </script>

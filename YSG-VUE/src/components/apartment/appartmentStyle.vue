@@ -1,14 +1,8 @@
 <template>
     <div class="appartment_style app-style">
         <div class="nav_mark"></div>
-        <yd-navbar :title="appartmentShow.title" fixed>
-            <router-link to="/home" slot="left" v-if="stateFlag == '1'">
-                <span class="back"></span>
-            </router-link>
-            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" slot="left" v-if="stateFlag == '2'">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+        </router-link>
+        <v-back v-bind:title="appartmentShow.title" style="position:fixed;z-index:100;"></v-back>
         <scroller>
             <section class="appartment_style_tab" style="margin-top: 1.3rem;">
                 <div class="swiper-container">
@@ -100,7 +94,9 @@
 
 <script>
 	import { mapGetters } from 'vuex'
-	import { mapState } from 'vuex'
+    import { mapState } from 'vuex'
+    import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -185,7 +181,7 @@
 
         },
         components:{
-
+            "v-back": back
         },
 		computed: {
 			...mapState({

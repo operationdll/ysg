@@ -1,9 +1,7 @@
 <template>
     <div class="search">
         <div class="nav_mark"></div>
-        <yd-navbar :title="language.home.findResidence" fixed>
-                <span class="close" slot="left" @click="goBack"></span>
-        </yd-navbar>
+        <v-back v-bind:title="language.home.findResidence" home="home"></v-back>
         <div class="search_box" style="margin-top: 1rem;">
             <section class="s_picker">
                 <ul>
@@ -34,6 +32,8 @@
 	import { PopupPicker, XButton } from 'vux'
 	import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
+    import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -225,7 +225,8 @@
 			}
 		},
         components:{
-            PopupPicker
+            PopupPicker,
+            "v-back": back
         },
         computed: {
             ...mapState({

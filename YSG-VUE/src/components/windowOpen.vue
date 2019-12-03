@@ -1,14 +1,10 @@
 <template>
 <div class="property">
 	<div class="nav_mark"></div>
-	<yd-navbar :title="title" fixed>
-		<router-link :to="backUrl" slot="left">
-			<span class="back" ></span>
-		</router-link>
-	</yd-navbar>
-	<section class="promotiom_list s-list" style="height: 13.28rem;">
+	<v-back v-bind:title="title" home="home"></v-back>
+	<section class="promotiom_list s-list" style="height: 12rem;">
           <scroller>
-			  <iframe id="iframe_detail" :src="url"  frameborder="0" style="height: 11.77rem;margin-top:1.5rem;padding:3px;width:100%;"></iframe>
+			  <iframe id="iframe_detail" :src="url"  frameborder="0" style="height: 11.77rem;padding:3px;width:100%;"></iframe>
           </scroller>
       </section>
 </div>
@@ -19,6 +15,8 @@
 </style>
 <script>
     import { mapState } from 'vuex'
+    import back from "./back";
+
     export default {
         data() {
             return {
@@ -40,7 +38,8 @@
         },
         mounted:function () {
         },
-        components:{
+        components: {
+            "v-back": back
         }
     };
 </script>

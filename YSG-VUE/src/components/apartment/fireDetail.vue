@@ -1,14 +1,7 @@
 <template>
     <div class="common_nav_style">
         <div class="nav_mark"></div>
-        <yd-navbar :title="info.floor" fixed>
-            <router-link to="/home" slot="left" v-if="stateFlag == '1'">
-                <span class="back"></span>
-            </router-link>
-            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" slot="left" v-if="stateFlag == '2'">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+        <v-back v-bind:title="info.floor"></v-back>
         <section class="resolve-box" v-html="content"></section>
     </div>
 </template>
@@ -18,7 +11,9 @@
 
 <script>
 	import { mapGetters } from 'vuex'
-	import { mapState } from 'vuex'
+    import { mapState } from 'vuex'
+    import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -49,11 +44,12 @@
         mounted:function () {
             $(document).ready(function () {
                 $('.resolve-box').viewer()
-            })
-        },
-        mounted:function () {
-            //一级页面falg
+            });
+             //一级页面falg
             isHomePage(0)
+        },
+        components: {
+            "v-back": back
         }
 	};
 </script>

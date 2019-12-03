@@ -1,14 +1,7 @@
 <template>
     <div class="common_nav_style" style="height: 100%;">
         <div class="nav_mark"></div>
-        <yd-navbar :title="language.map.title" fixed>
-            <router-link :to="{path:'/home'}" slot="left" v-if="stateFlag == '1'">
-                <span class="back"></span>
-            </router-link>
-            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" slot="left" v-if="stateFlag == '2'">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+        <v-back v-bind:title="language.map.title" style="position:fixed;"></v-back>
         <div class="map-mark">
             <div class="col-8">
                 <h4>{{home.data.name}}</h4>
@@ -35,6 +28,8 @@
 
 <script type="text/babel">
     import { mapState } from 'vuex'
+    import back from "../back";
+
     export default {
         data() {
             return {
@@ -92,5 +87,8 @@
                 hotelDetail: state => state.home.hotelDetail
             })
         },
+        components: {
+            "v-back": back
+        }
     }
 </script>

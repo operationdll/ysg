@@ -1,15 +1,9 @@
 <template>
     <div class="box">
         <div class="guide">
-            <yd-navbar class="guide_title" title="">
-                <router-link to="/unlogin" slot="left" v-if="flag == 'unlogin'">
-                    <span class="close"></span>
-                </router-link>
-                <router-link to="/home" slot="left" v-if="flag == 'home'">
-                    <span class="close"></span>
-                </router-link>
-            </yd-navbar>
-            
+            <div class="home-bnt" @click="goHome">
+                <span class="back-home"></span>
+            </div>
             <section class="login_bottom">
                 <h2 class="login_title">{{language.login.sign}}</h2>
                 <div class="search_box login_select" @click="isPopShow = true">
@@ -40,7 +34,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 .em_password{padding: .35rem 0;}
 .em_password li{float: left;}
 .em_password li:first-child{width: 70%;}
@@ -51,6 +45,28 @@
 .em_password li input::-moz-placeholder {color: #fff;}
 .m-checkbox>.checkbox-icon{vertical-align: middle!important;}
 .m-checkbox>.checkbox-text{color: #fff!important;}
+
+
+
+.home-bnt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    margin-top: .2rem;
+    margin-left: -.2rem;
+    float:left;
+}
+
+.back-home {
+  display: block;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: url("../../assets/images/icon_close_o.png") center no-repeat;
+  background-size: 0.4rem;
+}
 </style>
 
 <script>
@@ -174,9 +190,10 @@
 					}
 				}
 				this.hotelId = key;
-			}
-
-
+			},
+            goHome() {
+                this.$router.replace('/');
+            }
 		},
 		components: {
 			'v-menu': menu,

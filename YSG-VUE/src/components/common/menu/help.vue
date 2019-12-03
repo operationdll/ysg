@@ -1,9 +1,7 @@
 <template>
 	<div class="common_nav_style">
 		<div class="nav_mark"></div>
-		<yd-navbar title="HELP" fixed>
-			<span slot="left" class="back" @click="goBack"></span>
-		</yd-navbar>
+		<v-back title="HELP" home="home"></v-back>
 		<div style="padding-top: 1.5rem;">
 			<ul class="help-list">
 				<li v-for="item in helpList">
@@ -26,6 +24,8 @@
 <script type="text/babel">
 	import { mapGetters } from 'vuex'
 	import { mapState } from 'vuex'
+	import back from "../../back";
+
 	export default {
 		data() {
 			return {
@@ -75,8 +75,8 @@
             //一级页面falg
             isHomePage(0)
         },
-		components:{
-
+		components: {
+			"v-back": back
 		},
 	};
 </script>

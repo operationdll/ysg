@@ -1,12 +1,7 @@
 <template>
   <div class="promotiom">
       <div class="nav_mark"></div>
-      <yd-navbar :title="language.community.feedback" fixed>
-      <router-link to="/feedback" slot="left">
-          <span class="close"></span>
-      </router-link>
-      </yd-navbar>
-
+       <v-back v-bind:title="language.community.feedback" style="position:fixed;margin-top:-1.3rem;"></v-back>
       <section class="quetion_list">
           <ul id="feedback">
               <li v-for="(data,index) in dataList">
@@ -54,6 +49,7 @@
 	import menu from '../common/menu.vue'
     import guestCenter from '../common/menu/guestCenter.vue'
     import { PopupPicker, XButton, Scroller } from 'vux'
+    import back from "../back";
 //    import { Scroller, Divider, Spinner, XButton, Group, Cell, LoadMore, PopupPicker } from 'vux'
 	export default {
 		data() {
@@ -135,6 +131,7 @@
             'v-guestCenter':guestCenter,
             PopupPicker,
             Scroller,
+            "v-back": back
         },
         computed: {
             ...mapState({

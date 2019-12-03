@@ -1,11 +1,7 @@
 <template>
 <div class="property">
 	<div class="nav_mark"></div>
-	<yd-navbar :title="language.community.propertyActivity" fixed>
-		<router-link to="/communityLife" slot="left">
-			<span class="close"></span>
-		</router-link>
-	</yd-navbar>
+    <v-back v-bind:title="language.community.propertyActivity" home="home" style="position:fixed;margin-top:-1.2rem;"></v-back>
 	<section class="promotiom_list top_nav resetPro">
 		<scroller :on-infinite="infinite">
 			<ul class="ac-list">
@@ -37,6 +33,8 @@
 <script >
     import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
+    import back from "../back";
+
     export default {
         data() {
             return {
@@ -101,7 +99,8 @@
 				});
             }
         },
-        components: {
+        components:{
+            "v-back": back
         },
         mounted:function () {
             //一级页面falg

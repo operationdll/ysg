@@ -1,11 +1,7 @@
 <template>
     <div class="search">
         <div class="nav_mark"></div>
-        <yd-navbar :title="language.community.ascottLife" fixed>
-            <router-link to="/communityLife" slot="left">
-                <span class="close"></span>
-            </router-link>
-        </yd-navbar>
+        <v-back v-bind:title="language.community.ascottLife" home="home" style="position:fixed;z-index:100;"></v-back>
         <section class="promotiom_list top_nav resetPro  s-list">
             <scroller :on-infinite="infinite">
                 <ul class="ac-list">
@@ -36,6 +32,8 @@
 <script>
     import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
+    import back from "../back";
+
     export default {
         data() {
             return {
@@ -87,7 +85,8 @@
                 this.$router.push({path:'/lifeDetail',query:{info:data}})
             }
         },
-        components: {
+        components:{
+            "v-back": back
         },
         computed: {
         ...mapState({

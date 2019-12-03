@@ -1,14 +1,7 @@
 <template>
     <div class="translate">
         <div class="nav_mark"></div>
-        <yd-navbar :title="language.func.translate" fixed>
-            <router-link to="/home" slot="left" v-if="stateFlag == '1'">
-                <span class="close"></span>
-            </router-link>
-            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" slot="left" v-if="stateFlag == '2'">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+        <v-back v-bind:title="language.func.translate" home="home"></v-back>
         <div class="translate_box" style="margin-top: 1rem;">
             <section class="sele_language">
                 <!-- 存储点击的按钮 -->
@@ -41,7 +34,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     .translate .translate_box{padding: .2rem;border-bottom: 1px solid #ddd;}
     .translate .translate_box .sele_language{padding: .35rem 0;overflow: hidden;border-bottom: 1px solid #eee;}
     .translate .translate_box .sele_language button{width: 100%;height: .7rem;border: 1px solid  #f0c366;color: #f0c366;background: none;font-size: .28rem;}
@@ -57,6 +50,8 @@
 <script>
     import { PopupPicker, XButton } from 'vux'
     import { mapState } from 'vuex'
+    import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -136,8 +131,10 @@
         mounted:function () {
             //一级页面falg
             isHomePage(0)
+        },
+        components: {
+            "v-back": back
         }
-
 	};
 
 

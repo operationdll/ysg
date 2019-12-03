@@ -2,12 +2,10 @@
   <div>
     <div class="search" style="height: 100%" id="section1">
       <div class="nav_mark"></div>
-      <yd-navbar :title="title" fixed>
-        <span class="close" slot="left" @click="goBack()"></span>
-      </yd-navbar>
+      <v-back v-bind:title="title" home="home" style="position:fixed;"></v-back>
       <section class="g-flexview">
         <section class="promotiom-box">
-          <h1>{{language.raiders.title}}</h1>
+          <h1>&nbsp;</h1>
         </section>
         <section class="g-scrollview">
             <table border="0" width="100%">
@@ -42,6 +40,8 @@
 <script>
     import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
+    import back from "../back";
+
     export default {
         data() {
             return {
@@ -96,7 +96,8 @@
             //一级页面falg
             isHomePage(0)
         },
-        components: {
+        components:{
+            "v-back": back
         },
         computed: {
             ...mapState({

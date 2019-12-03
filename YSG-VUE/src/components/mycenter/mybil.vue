@@ -1,14 +1,7 @@
 <template>
     <div class="common_nav_style">
         <div class="nav_mark"></div>
-        <yd-navbar :title="language.myCenter.bill" fixed>
-            <router-link to="/home" slot="left" v-if="stateFlag == '1'">
-                <span class="back"></span>
-            </router-link>
-            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" slot="left" v-if="stateFlag == '2'">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+		<v-back v-bind:title="language.myCenter.bill" home="home" style="position:fixed;z-index:100;"></v-back>
         <section>
             <scroller :on-infinite="infinite">
                 <yd-cell-group style="margin-top: 1.3rem;">
@@ -27,6 +20,8 @@
 <script>
 	import { mapGetters } from 'vuex'
 	import { mapState } from 'vuex'
+	import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -83,7 +78,9 @@
         mounted:function () {
             //一级页面falg
             isHomePage(0)
+        },
+        components:{
+            "v-back": back
         }
-
 	};
 </script>

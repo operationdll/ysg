@@ -1,15 +1,9 @@
 <template>
     <div class="box">
         <div class="guide">
-            <yd-navbar class="guide_title" title="">
-                <router-link to="/unlogin" slot="left" v-if="pageType == 'n_home'">
-                    <span class="close"></span>
-                </router-link>
-                <router-link :to="{path:'/s_home',query:{hotelid:come_hotelid}}" slot="left" v-else-if="pageType == 's_home'">
-                    <span class="close"></span>
-                </router-link>
-                <span class="close"  slot="left" v-else @click="goBack"></span>
-            </yd-navbar>
+            <div class="home-bnt" @click="goHome">
+                <span class="back-home"></span>
+            </div>
             <section class="login_bottom">
                 <h2 class="login_title">{{language.login.sign}}</h2>
                 <div class="search_box login_select" @click="isPopShow = true">
@@ -66,6 +60,27 @@
 .login_select i{background: url("../../assets/images/icon_download.png")center no-repeat!important;background-size: .3rem!important;}
 .search_box .vux-cell-box{display: none;}
 .vux-popup-picker-header{color: #4fb7ee!important;}
+</style>
+<style scoped>
+.home-bnt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1rem;
+    margin-top: .2rem;
+    margin-left: -.2rem;
+    float:left;
+}
+
+.back-home {
+  display: block;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: url("../../assets/images/icon_close_o.png") center no-repeat;
+  background-size: 0.4rem;
+}
 </style>
 
 <script>
@@ -214,7 +229,10 @@
 			},
 			goBack:function () {
                 this.$router.go(-1);
-			}
+			},
+            goHome() {
+                this.$router.replace('/');
+            }
 		},
 		components: {
 			'v-menu': menu,

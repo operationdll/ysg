@@ -1,6 +1,7 @@
 <template>
   <div class="search">
     <div class="search_box">
+        <v-back v-bind:title="language.myCenter.robotControl"></v-back>
         <div class="divmBG"></div>
         <div class="bntDiv">
             <div>
@@ -28,11 +29,6 @@
                 <button class="bnt" @click="detail(5)">返回充电桩</button>
               <span class="rArrow" style="margin-top:-.52rem;margin-left:6.17rem;"></span>
             </div>
-            <div>
-              <span class="lArrow" style="margin-top:.78rem;margin-left:.28rem;"></span>
-                <button class="bnt" @click="goBack">返回</button>
-              <span class="rArrow" style="margin-top:-.52rem;margin-left:6.17rem;"></span>
-            </div>
         </div>
     </div>
   </div>
@@ -47,7 +43,7 @@
 
 .bntDiv{
     width:100%;
-    margin-top:5rem;
+    margin-top:5.5rem;
     display:block;
     position:absolute;
     z-index:1;
@@ -72,7 +68,6 @@
 
 .divmBG{
     width:100%;
-    margin-top:-.5rem;
     display:block;
     position:absolute;
     z-index:1;
@@ -108,6 +103,8 @@
 
 <script>
 import { mapState } from "vuex";
+import back from "../../back";
+
 export default {
   data() {
     return {
@@ -129,12 +126,12 @@ export default {
     })
   },
   methods: {
-    goBack() {
-        this.$router.replace("/");
-    },
     detail(v){
         this.$router.push({path:'/robotDetail',query:{v:v}});
     }
+  },
+  components: {
+    "v-back": back
   }
 };
 </script>

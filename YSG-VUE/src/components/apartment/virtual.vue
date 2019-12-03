@@ -1,14 +1,16 @@
 <template>
     <div class="common_nav_style">
         <div class="nav_mark"></div>
-        <yd-navbar :title="title" fixed>
-            <router-link :to="{path:'/home', query:{pageType: pageType}}" slot="left" v-if="stateFlag == '1'">
-                <span class="back"></span>
+            <router-link :to="{path:'/home', query:{pageType: pageType}}" v-if="stateFlag == '1'">
+                <yd-navbar :title="title" fixed>
+                    <span class="back" style="background-size: 0.3rem;" slot="left"></span>
+                </yd-navbar>
             </router-link>
-            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" slot="left" v-if="stateFlag == '2'">
-                <span class="back"></span>
+            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" v-if="stateFlag == '2'">
+                <yd-navbar :title="title" fixed>
+                    <span class="back" style="background-size: 0.3rem;" slot="left"></span>
+                </yd-navbar>
             </router-link>
-        </yd-navbar>
         <div class="webview">
             <iframe class="setIframe"  :src="panoramicSrc" frameborder="0" scrolling="yes"></iframe>
         </div>

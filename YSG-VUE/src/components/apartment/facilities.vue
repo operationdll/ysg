@@ -1,14 +1,7 @@
 <template>
     <div class="common_nav_style">
         <div class="nav_mark"></div>
-        <yd-navbar :title="info.name" fixed>
-            <router-link :to="{path:'/home'}" slot="left" v-if="stateFlag == '1'">
-                <span class="back"></span>
-            </router-link>
-            <router-link :to="{path:'/s_home',query:{hotelid:hotelid}}" slot="left" v-if="stateFlag == '2'">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+		<v-back v-bind:title="info.name" style="position:fixed;"></v-back>
         <section class="resolve-box" v-show="showContent" v-html="content"></section>
 
         <ul class="pdf-video" :class="{ 'one': isOne, 'two': isTwo}" v-show="btnFlag">
@@ -24,6 +17,8 @@
 <script>
 	import { mapGetters } from 'vuex'
 	import { mapState } from 'vuex'
+	import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -102,6 +97,9 @@
         mounted:function () {
             //一级页面falg
             isHomePage(0)
-        }
+		},
+		components: {
+			"v-back": back
+		}
 	};
 </script>

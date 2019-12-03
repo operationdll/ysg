@@ -1,11 +1,7 @@
 <template>
     <div class="search">
         <div class="nav_mark"></div>
-        <yd-navbar :title="language.community.opinionSurvey" fixed>
-            <router-link to="/communityLife" slot="left">
-                <span class="close"></span>
-            </router-link>
-        </yd-navbar>
+        <v-back v-bind:title="language.community.opinionSurvey" home="home" style="position:fixed;"></v-back>
         <section class="promotiom_list top_nav resetPro s-list">
             <scroller :on-infinite="infinite">
                 <ul>
@@ -33,6 +29,8 @@
 <script>
 	import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
+    import back from "../back";
+
 	export default {
 		data() {
 			return {
@@ -78,8 +76,9 @@
                 this.$router.push({path:'/opinionDetail', query:{info:info}})
             }
 		},
-		components: {
-		},
+		components:{
+            "v-back": back
+        },
         mounted:function () {
             //一级页面falg
             isHomePage(0)

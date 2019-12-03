@@ -2,15 +2,13 @@
   <div>
     <div class="search" style="height: 100%" id="section5">
       <div class="nav_mark"></div>
-      <yd-navbar :title="title" fixed>
-        <span class="back" slot="left" @click="ordGoBack()"></span>
-        <span style="display:block;width:50%;height:60%;margin-top:10%;margin-right:40%;" slot="right" @click="isProperty = true">
+       <span style="display:flex;margin-top:.4rem;float:left;z-index:101;position: fixed;margin-left:5.5rem;font-size:.3rem;width:2rem;height:1rem;justify-content: center;align-items: center;" @click="isProperty = true">
            <div style="color:#afafaf;" v-if="isZH">选择物业</div>
            <div style="color:#afafaf;" v-if="!isZH">Property</div>
-           <popup-picker :data="properties" :show="isProperty" :columns="1" @on-hide="isProperty = false" @on-change="onPropertyChange"></popup-picker>
-        </span>
-      </yd-navbar></br></br></br>
-      <div style="width:100%;height:120px;">
+      </span>
+      <popup-picker :data="properties" :show="isProperty" :columns="1" @on-hide="isProperty = false" @on-change="onPropertyChange"></popup-picker>
+      <v-back v-bind:title="title" style="position:fixed;z-index:100;margin-top:-.5rem"></v-back>
+      <div style="width:100%;height:120px;margin-top:1.2rem;">
             <div style="position:absolute;left:30px;top:104px;font-size:0.4rem;font-family:Avenir-Heavy;color:#ffffff;">{{hName}}</div>
             <img :src="hUrl" width="100%" height="100%">
       </div>
@@ -169,6 +167,8 @@
     import { PopupPicker, XButton } from 'vux'
     import { mapGetters } from 'vuex'
     import { mapState } from 'vuex'
+    import back from "../back";
+
     export default {
         data() {
             return {
@@ -254,9 +254,6 @@
             ordClose:function(){
                 $("#section6").hide();
                 $("#section5").show();
-            },
-            ordGoBack:function(){
-                this.$router.push('/home');
             },
             ordDetail:function(order){
                 $("#section5").hide();
@@ -348,7 +345,8 @@
             isHomePage(0)
         },
         components: {
-            PopupPicker
+            PopupPicker,
+            "v-back": back
         },
         computed: {
             ...mapState({

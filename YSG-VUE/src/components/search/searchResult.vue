@@ -1,13 +1,8 @@
 <template>
     <div class="search">
         <div class="nav_mark"></div>
-        <yd-navbar title="FIND A RESIDENCE" fixed>
-            <router-link to="/search" slot="left">
-                <span class="back"></span>
-            </router-link>
-        </yd-navbar>
+        <v-back title="FIND A RESIDENCE" style="z-index:100;position:fixed;"></v-back>
         <div class="search_box">
-
             <section class="map_list" style="padding-top: 1.4rem;min-height: 7.5rem">
                 <ul>
                     <li v-for="hotel in hotelList">
@@ -45,6 +40,8 @@
 import { mapGetters } from "vuex";
 import { mapState } from "vuex";
 import { getDistance } from "../../config/mUtils";
+import back from "../back";
+
 export default {
   data() {
     return {
@@ -155,7 +152,9 @@ export default {
       });
     }
   },
-  components: {},
+  components: {
+      "v-back": back
+  },
   mounted: function() {
     //一级页面falg
     isHomePage(0);
