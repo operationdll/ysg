@@ -801,6 +801,7 @@ export default {
         //初始化出发地点
         this.$store.dispatch("robotBack", params).then(res => {
             if (res.code == 0) {
+                _this.$dialog.toast({ mes: '已出发', timeout: 1000 });
             }else{
                 _this.$dialog.toast({ mes: res.msg, timeout: 1000 });
             }
