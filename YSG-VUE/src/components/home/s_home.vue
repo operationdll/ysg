@@ -60,6 +60,10 @@
           <div v-if="hotelDetail.robot_pic != ''" class="map_content">
 						<img :src="hotelDetail.robot_pic" @click="goLocation(2)">
 					</div>
+          <!--成都物业曹操专车-->
+          <div v-if="hotelid == 22" class="map_content">
+						<img src="../../assets/caocao.jpg" @click="goCaocao()" style="border:1px solid black;"/>
+					</div>
           <!--广告功能start-->
           <div style="margin-top: 0.5rem;display:none;" id="advDiv">
             <div style="background:#f6f6f6;width:100%;height:8px;display:block;"></div>
@@ -1179,6 +1183,21 @@ export default {
           })
         }
     },
+    goCaocao(){
+      let params = {
+              client_id: 'bbd2bdfcaa0ef194',
+              sign_key: '16dd4ab835fe87fcf0cb05eb2797b84b',
+              ext_user_id: localStorage.HOTELID,
+              user_type: 1
+          };
+      this.$store.dispatch("createCCSign", params).then(res => {
+        let sign = res.sign;
+        let timestamp = res.timestamp;
+        let url = "https://sandbox-mobile.caocaokeji.cn/enterprise-travel/home?client_id="+params.client_id+"&user_type="
+        +params.user_type+"&ext_user_id="+params.ext_user_id+"&sign="+sign+"&timestamp="+timestamp;
+        this.$router.push({path:'/windowOpen',query:{url:url,title:"Caocao",backUrl:'/'}});
+      });
+    }
   },
   components: {
     "v-foot": foot,

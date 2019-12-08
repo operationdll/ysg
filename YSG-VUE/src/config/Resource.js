@@ -91,6 +91,8 @@ const Home = {
 	getHomeAdv:'/poi/getHomeAdv',
 	//机器人控制返回充电桩
 	robotBack:'/service/robotBack',
+	//曹操专车获取签名
+	createCCSign:'/service/createCCSign',
 }
 
 //登录接口
@@ -334,4 +336,6 @@ export default {
 	getHomeAdv:(query) => apiPost(Home.getHomeAdv,query),
 	//机器人控制返回充电桩
 	robotBack:(query) => apiPost(Home.robotBack,query),
+	//曹操专车获取签名
+	createCCSign:(query) => apiPost(Home.createCCSign,query),
 }

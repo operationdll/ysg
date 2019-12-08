@@ -485,7 +485,6 @@ const actions = {
       );
     });
   },
-
   //获取首页广告列表
   getHomeAdv: function({ commit }, url, data) {
     return new Promise((resolve, reject) => {
@@ -499,7 +498,21 @@ const actions = {
         }
       );
     });
-  }
+  },
+  //曹操专车获取签名
+	createCCSign: function({ commit }, url, data) {
+    return new Promise((resolve, reject) => {
+      API.createCCSign(url, data).then(
+        res => {
+          commit(types.APPSTART, res.data);
+          resolve(res.data);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  },
 };
 
 const mutations = {

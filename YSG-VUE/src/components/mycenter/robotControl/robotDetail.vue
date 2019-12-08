@@ -784,7 +784,10 @@ export default {
             productid = 'HOTQY00SZ201806281006043';
         }else if(localStorage.HOTELID==30){
             productid = 'HOTQY00SZ201806281007039';
+        }else if(localStorage.HOTELID==102){
+            productid = 'HOTQY00SZ201906041312041';
         }
+        
         if(productid == ''){
             this.$dialog.toast({ mes: '该物业没有机器人服务!', timeout: 1000 });
             return;
