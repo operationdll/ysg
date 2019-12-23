@@ -60,10 +60,10 @@
           <div v-if="hotelDetail.robot_pic != ''" class="map_content">
 						<img :src="hotelDetail.robot_pic" @click="goLocation(2)">
 					</div>
-          <!--成都物业曹操专车-->
+          <!--成都物业曹操专车
           <div v-if="hotelid == 22" class="map_content">
 						<img src="../../assets/caocao.jpg" @click="goCaocao()" style="border:1px solid black;"/>
-					</div>
+					</div>-->
           <!--广告功能start-->
           <div style="margin-top: 0.5rem;display:none;" id="advDiv">
             <div style="background:#f6f6f6;width:100%;height:8px;display:block;"></div>

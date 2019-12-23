@@ -1,7 +1,8 @@
 <template>
     <div class="common_nav_style" style="height: 100%;">
-        <div class="nav_mark"></div>
-        <v-back v-bind:title="language.map.title" style="position:fixed;"></v-back>
+        <div class="nav_mark">
+            <v-back v-bind:title="language.map.title" style="position:fixed;"></v-back>
+        </div>
         <div class="map-mark">
             <div class="col-8">
                 <h4>{{home.data.name}}</h4>
